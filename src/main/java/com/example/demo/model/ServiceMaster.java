@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "services_mst")
+@Table(name = "lm_services_mst")
 public class ServiceMaster {
 
   @Id

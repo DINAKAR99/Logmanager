@@ -22,7 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "refresh_token")
+@Table(name = "lm_refresh_token")
 public class RefreshToken {
     @Id
     @GeneratedValue
