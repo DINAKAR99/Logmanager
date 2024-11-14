@@ -27,10 +27,8 @@ const DeveloperBoard = () => {
       { code: "ROW", name: "TFIBER" },
       { code: "RC", name: "ROAD-CUTTING" },
     ],
-    RTC: [
-      { code: "P003", name: "Project Gamma" },
-      { code: "P004", name: "Project Delta" },
-    ],
+    RTC: [{ code: "RTC", name: "Project RTC" }],
+    MIV: [{ code: "MIV", name: "Project MIV" }],
   };
 
   const members = {
@@ -74,6 +72,8 @@ const DeveloperBoard = () => {
       { id: "M1", name: "Module 1" },
       { id: "M2", name: "Module 2" },
     ],
+    RTC: [{ id: "NA", name: "NA" }],
+    MIV: [{ id: "NA", name: "NA" }],
   };
 
   const subtaskOptions = Array.from({ length: 10 }, (_, i) => i + 1);
