@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test</title>
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Load jQuery Validation Plugin -->
+    <script src="
+        https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js
+        "></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.js"></script>
+    <!-- jQuery UI CSS (Optional, only for styling purposes) -->
+
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Registration Form</h1>
+    <form id="registrationForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+      <br /><br />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      <br /><br />
+
+      <label for="mobile">Mobile:</label>
+      <input type="text" id="mobile" name="mobile" required />
+      <br /><br />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        minlength="6"
+      />
+      <br /><br />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      $(document).ready(function () {
+        $("#registrationForm").validate({
+          rules: {
+            name: {
+              required: true,
+              minlength: 2,
+            },
+            email: {
+              required: true,
+              email: true,
+            },
+            mobile: {
+              required: true,
+              pattern: "^[0-9]{10}$", // Use the pattern directly
+            },
+            password: {
+              required: true,
+              minlength: 6,
+            },
+          },
+          messages: {
+            name: {
+              required: "Please enter your name",
+              minlength: "Your name must be at least 2 characters long",
+            },
+            email: {
+              required: "Please enter your email address",
+              email: "Please enter a valid email address",
+            },
+            mobile: {
+              required: "Please enter your mobile number",
+              pattern: "Please enter a valid 10-digit mobile number.",
+            },
+            password: {
+              required: "Please provide a password",
+              minlength: "Your password must be at least 6 characters long",
+            },
+          },
+          submitHandler: function (form) {
+            alert("Form submitted successfully!");
+            form.submit();
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

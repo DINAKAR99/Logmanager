@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+
+<tiles-definitions>
+
+    <!-- tiles   -->
+
+    <definition name="public-layout" template="/WEB-INF/views/layouts/mainlayout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/common/public/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/common/public/menu.jsp" />
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/common/public/footer.jsp" />
+    </definition>
+    <!-- 
+    <definition name="tfiber-def" template="/WEB-INF/views/tfiber/common/tfiberlayout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/tfiber/common/tfiberheadermain.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/tfiber/common/tfibermenu.jsp" />
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/tfiber/common/tfiberfooter.jsp" />
+    </definition>
+
+    <definition name="tfiber-view-def" template="/WEB-INF/views/tfiber/common/tfiberviewlayout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/tfiber/common/tfiberheadermain.jsp" />
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/tfiber/common/tfiberfooter.jsp" />
+    </definition> -->
+
+
+    <definition name="sessionExpiredPage" extends="public-layout">
+        <put-attribute name="content" value="/WEB-INF/views/tfiber/common/sessionExpired.jsp"/>
+    </definition>
+
+    <definition name="accessDenied" extends="public-layout">
+        <put-attribute name="content" value="/WEB-INF/views/accessDenied.jsp"/>
+    </definition>
+
+    <definition name="homePage" extends="public-layout">
+        <put-attribute name="content" value="/WEB-INF/views/public/homePage.jsp"/>
+    </definition>
+    <!-- <definition name="login" extends="public-layout">
+        <put-attribute name="content" value="/WEB-INF/views/public/login.jsp"/>
+    </definition> -->
+    <definition name="userRegistration" extends="public-layout">
+        <put-attribute name="content" value="/WEB-INF/views/public/userRegistration.jsp"/>
+    </definition>
+    <definition name="registrationSuccessful" extends="public-layout">
+        <put-attribute name="content" value="/WEB-INF/views/public/registrationSuccessful.jsp"/>
+    </definition>
+    <definition name="dualLogin" extends="public-layout">
+        <put-attribute name="content" value="/WEB-INF/views/public/dualLogin.jsp"/>
+    </definition>
+    <definition name="sessionExpired" extends="public-layout">
+        <put-attribute name="content" value="/WEB-INF/views/public/sessionExpired.jsp"/>
+    </definition>
+    <definition name="protected" extends="public-layout">
+        <put-attribute name="content" value="/WEB-INF/views/public/protected.jsp"/>
+    </definition>
+</tiles-definitions>

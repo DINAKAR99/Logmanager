@@ -1,0 +1,448 @@
+@import url("https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap");
+body {
+  font-family: "Yantramanav", sans-serif;
+  background-color: white;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* styles.css */
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+}
+.homebanner {
+  top: 20px;
+  left: 30px;
+}
+.nav-link:hover {
+  color: green;
+}
+.nav-link {
+  border-radius: 5px;
+  padding-left: 10px !important;
+}
+.nav-link:active {
+  color: green !important;
+}
+/* Navbar.css */
+.nav-link:hover {
+  color: green !important;
+}
+
+.dropdown-item:hover {
+  color: green !important;
+}
+a {
+  text-decoration: none !important;
+}
+/* = */
+
+table {
+  background-color: #b5d7ed !important;
+}
+
+.box {
+  /* transition: background 5s ease-in-out; */
+  backdrop-filter: blur(20px);
+  width: 90px;
+  text-align: center;
+}
+
+.box:nth-child(even) {
+  background-color: #696969d5;
+  animation: slideRight 1.2s;
+}
+.box:nth-child(odd) {
+  background-color: #696969d5;
+  animation: slideLeft 1.2s;
+}
+
+.challcont {
+  height: 100%;
+}
+
+.primary-background {
+  /* background: url("./images/tower2.jpg"); */
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+}
+.c1 {
+  backdrop-filter: blur(5px);
+}
+
+.drop-from-top {
+  animation: drop-from-top 1s ease-in-out;
+}
+@keyframes drop-from-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-300px);
+  }
+
+  100% {
+  }
+}
+.smoothvisibility {
+  animation: smoothvisibility 0.4s ease-in-out;
+}
+@keyframes smoothvisibility {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+  }
+}
+.drop-from-right {
+  animation: drop-from-right 1s ease-in-out;
+}
+@keyframes drop-from-right {
+  0% {
+    transform: translateX(300px);
+  }
+
+  100% {
+  }
+}
+.drop-from-left {
+  animation: drop-from-left 1s ease-in-out;
+}
+@keyframes drop-from-left {
+  0% {
+    transform: translateX(-300px);
+  }
+
+  100% {
+  }
+}
+.drop-from-bottom {
+  animation: drop-from-bottom 0.7s ease-in-out;
+}
+@keyframes drop-from-bottom {
+  0% {
+    transform: translateY(300px);
+  }
+
+  100% {
+  }
+}
+
+.custom-navbar {
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.87);
+}
+.main-navbar {
+  /* backdrop-filter: blur(5px); */
+  background-color: rgba(0, 0, 0, 0.87);
+}
+/* For Chrome, Safari, and Opera */
+*::-webkit-scrollbar {
+  width: 5px; /* Adjust scrollbar width */
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Adjust scrollbar track color */
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888; /* Adjust scrollbar handle color */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Adjust scrollbar handle color when hovered */
+}
+
+/* For Internet Explorer and Edge */
+* {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #989898eb #f1f1f1; /* scrollbar handle color, scrollbar track color */
+}
+
+.xtra:hover {
+  background-color: #dcdcdcc7 !important;
+}
+
+.buttonHov:hover {
+  color: #c58c56 !important;
+}
+.bulg {
+  animation: all 1s infinite;
+}
+.bulg:hover {
+  scale: 1.7;
+  transition: all 0.3s ease;
+}
+
+.bulg2 {
+  transition: transform 0.3s ease-in-out !important;
+}
+.bulg2:hover {
+  transform: scale(1.1);
+}
+
+@keyframes all {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.nav-link.active {
+  color: rgb(194, 137, 87) !important; /* Change to whatever color you want */
+}
+
+.push-from-bottom {
+  animation: push-from-bottom 0.3s ease-in-out;
+}
+@keyframes push-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  100% {
+  }
+}
+
+.red {
+  color: red;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.hov {
+  scale: 1.2;
+}
+@keyframes slide-in-left {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(80deg);
+  }
+  50% {
+    transform: rotate(160deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#questionImg {
+  animation: slide-in-left 4s ease-in-out infinite;
+}
+.color-changing-text {
+  /* font-size: 170px; */
+
+  background: linear-gradient(
+    90deg,
+    red,
+    yellow,
+    green,
+    cyan,
+    blue,
+    magenta,
+    red
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: colorChange 13s infinite;
+}
+
+@keyframes colorChange {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#dsa {
+  /* background-image: url("./images/sky.jpg"); */
+  background-size: cover;
+  background-color: #2980b9;
+}
+
+/* .App {
+  text-align: center;
+} */
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+th {
+  padding: 10px;
+}
+
+/* moon  */
+@keyframes moveStar {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(calc(100vw - 5px), calc(100vh - 5px));
+  }
+}
+
+@keyframes rotatePlanet {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Add fade-in animation */
+.fade-in {
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Define the keyframes for the fade-in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* DeveloperBoard.css */
+
+.developer-board {
+  max-width: 800px;
+  margin: 20px auto; /* Add margin for top and bottom */
+  padding: 30px; /* Increased padding for a spacious layout */
+  background-color: #f8f9fa; /* Light background */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px; /* Add margin below the heading */
+}
+
+.text-center {
+  margin-bottom: 20px;
+}
+
+.text-center label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+select,
+input[type="text"],
+input[type="date"] {
+  width: calc(100% - 20px); /* Full width minus padding */
+  padding: 12px; /* Increased padding for inputs */
+  margin: 10px 0; /* More margin for spacing between fields */
+  border: 1px solid #ced4da; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+input[type="text"][readOnly] {
+  background-color: #e9ecef; /* Gray background for readonly fields */
+}
+
+/* DeveloperBoard.css */
+
+/* Existing styles... */
+
+/* Add styles for the table */
+table {
+  width: 100%; /* Make the table full width */
+  border-collapse: collapse; /* Collapse borders into a single border */
+  margin-top: 20px; /* Space above the table */
+  border: 1px solid #0000001e; /* Border for table cells */
+}
+.table-bordered {
+  border: 4px solid black !important; /* Border for table cells */
+}
+th,
+td {
+  border: 1px solid #010101; /* Border for table cells */
+  padding: 10px; /* Padding for table cells */
+  text-align: left; /* Align text to the left */
+}
+
+th {
+  background-color: #f8f9fa; /* Light gray background for header */
+  font-weight: bold; /* Bold text for headers */
+  background-color: beige;
+}
+
+tr:nth-child(even) {
+  background-color: #ffffffe8; /* Zebra striping for even rows */
+}
+
+/* Other existing styles... */
+
+button {
+  padding: 8px 12px; /* Increased padding for buttons */
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+table td:last-child button {
+  margin-left: 5px; /* Space between action buttons */
+}
+/* DeveloperBoard.css */
+
+/* Existing styles... */
+
+select {
+  width: 150px; /* Set a fixed width for dropdowns */
+  padding: 10px; /* Slightly reduce padding */
+  margin: 10px 0; /* More margin for spacing */
+  border: 1px solid #ced4da; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+/* Other existing styles... */

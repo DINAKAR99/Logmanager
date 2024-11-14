@@ -1,0 +1,15 @@
+.hideField {
+	display: none !important
+}
+
+ .btn-padding-top {
+  padding-top: 25px;
+  }
+  
+  .modal-header .close {
+    margin-top: -25px !important;
+}
+
+.help-block {
+	color: #ff0000 !important; 
+}

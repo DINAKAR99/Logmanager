@@ -1,0 +1,23 @@
+@charset "ISO-8859-1";
+
+.form-group:nth-child(even) {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+	padding: 5px 0px !important;
+	margin-bottom: 0px !important;
+}
+
+.form-group:not (:last-child ) {
+	border-bottom: 1px solid #dee2e6 !important;
+}
+
+.font-weight-bold {
+	padding-top: 8px;
+}
+
+.form-control.datepicker {
+	padding: 0.375rem 0.75rem;
+	border-radius: 0px;
+}

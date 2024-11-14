@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic Saturn with Tilted Ring Animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            margin: 0;
+        }
+
+        .saturn-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            animation: rotateSaturn 20s infinite linear;
+        }
+
+        /* Saturn Planet */
+        .saturn {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #e0c27c 40%, #c4914b 70%);
+            border-radius: 50%;
+            box-shadow: inset -15px -10px 50px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(245, 208, 111, 0.8);
+            position: relative;
+        }
+
+        /* Ring container */
+        .ring-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            transform: translate(-50%, -50%) rotateX(30deg);
+            /* Tilted on x-axis */
+            transform-style: preserve-3d;
+            animation: rotateRingSystem 15s infinite linear;
+        }
+
+        /* Ring particles */
+        .ring-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            animation: orbit 4s infinite linear;
+        }
+
+        /* Animation for orbiting particles */
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg) translateX(180px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg) translateX(180px) rotate(-360deg);
+            }
+        }
+
+        /* Saturn rotation animation */
+        @keyframes rotateSaturn {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Entire ring system rotation */
+        @keyframes rotateRingSystem {
+            0% {
+                transform: translate(-50%, -50%) rotateX(30deg) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotateX(30deg) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="saturn-container">
+        <div class="saturn"></div>
+        <!-- Ring Container holding the particles -->
+        <div class="ring-container">
+            <!-- Multiple particles forming the ring -->
+            <div class="ring-particle" style="top: 50%; left: 50%;"></div>
+            <div class="ring-particle" style="top: 40%; left: 60%;"></div>
+            <div class="ring-particle" style="top: 60%; left: 40%;"></div>
+            <div class="ring-particle" style="top: 30%; left: 70%;"></div>
+            <div class="ring-particle" style="top: 70%; left: 30%;"></div>
+            <div class="ring-particle" style="top: 50%; left: 80%;"></div>
+            <div class="ring-particle" style="top: 20%; left: 60%;"></div>
+            <div class="ring-particle" style="top: 60%; left: 20%;"></div>
+            <!-- Add more particles for a denser ring -->
+        </div>
+    </div>
+
+</body>
+
+</html>

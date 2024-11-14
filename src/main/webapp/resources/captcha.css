@@ -1,0 +1,30 @@
+
+
+#refresh{
+	background-image: url(refresh.png);
+}
+
+#textCanvas1{
+    border: 1px black solid;
+}
+#textCanvas1{
+    display: none;
+}
+
+#captchaImage1{
+	width:150px;
+	height:30px !important;
+}
+
+#textCanvas2{
+    border: 1px black solid;
+}
+#textCanvas2{
+    display: none;
+}
+
+#captchaImage2{
+	width:150px;
+	height:30px;
+}
+
