@@ -70,7 +70,7 @@ const TaskDashboard = ({ empId = null }) => {
 
   return (
     <>
-      <div style={{ marginBottom: "20px" }}>
+      <div style={{ marginBottom: "20px" }} className="m-5">
         {/* Date range selectors */}
         <label>
           From Date:
@@ -111,7 +111,7 @@ const TaskDashboard = ({ empId = null }) => {
         </Button>
       </div>
 
-      <div>
+      <div className="m-5">
         {empId ? <h2> Tasks For Today </h2> : <h2>All Tasks</h2>}
 
         <table

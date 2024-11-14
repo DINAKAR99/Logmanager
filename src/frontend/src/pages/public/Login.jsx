@@ -192,6 +192,10 @@ const Login = () => {
         if (response.data.role === 1) {
           navigate("/assignedTasks");
         }
+
+        if (response.data.role === 5) {
+          navigate("/taskByAdmin");
+        }
         // navigate("/protected"); // Handle successful login, e.g., redirect or store token
       }
     } catch (error) {

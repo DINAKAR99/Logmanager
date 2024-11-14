@@ -267,7 +267,7 @@ const DeveloperBoard = () => {
   return (
     <div>
       <PublicLayout>
-        <div className="text-center">
+        <div className="text-center  ">
           <label>Team:</label>
           <select
             value={teamId}

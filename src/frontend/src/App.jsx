@@ -24,6 +24,7 @@ import EmployeeTaskBoard from "./pages/public/dashboards/EmployeeTaskBoard";
 import TaskDashboard from "./pages/public/dashboards/TaskDashboard";
 import CompleteReport from "./pages/public/dashboards/CompleteReport";
 import TaskEditor from "./pages/public/dashboards/TaskEditor.jsx";
+import Report2 from "./pages/public/dashboards/Report2.jsx";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -68,6 +69,10 @@ function App() {
             <Route
               path="/report"
               element={<ProtectedRoute element={<CompleteReport />} />}
+            />
+            <Route
+              path="/report2"
+              element={<ProtectedRoute element={<Report2 />} />}
             />
             <Route
               path="/taskByUser"

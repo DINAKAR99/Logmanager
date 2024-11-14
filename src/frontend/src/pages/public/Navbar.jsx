@@ -6,6 +6,8 @@ import { NavLink as Starlink, useNavigate } from "react-router-dom";
 
 const Navbarr = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [role, setRole] = useState("");
+  const [empid, setEmpid] = useState("");
 
   const toggleNavbar = () => setIsOpen(!isOpen);
   const navigate = useNavigate();
@@ -47,6 +49,12 @@ const Navbarr = () => {
   useEffect(() => {
     if (sessionStorage.getItem("isLoggedIn") === "true") {
       setIsLoggedIn(true);
+    }
+    if (sessionStorage.getItem("role")) {
+      setRole(sessionStorage.getItem("role"));
+    }
+    if (sessionStorage.getItem("userid")) {
+      setEmpid(sessionStorage.getItem("userid"));
     }
   }, []);
 
@@ -110,15 +118,19 @@ const Navbarr = () => {
                       Assigned Tasks
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      style={{ backgroundColor: "transparent" }}
-                      to="/taskByAdmin"
-                    >
-                      Task Assigner
-                    </Link>
-                  </li>
+                  {role === "5" && (
+                    <>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          style={{ backgroundColor: "transparent" }}
+                          to="/taskByAdmin"
+                        >
+                          Task Assigner
+                        </Link>
+                      </li>
+                    </>
+                  )}
                   <li>
                     <Link
                       className="dropdown-item"
@@ -128,15 +140,28 @@ const Navbarr = () => {
                       Add Task
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      style={{ backgroundColor: "transparent" }}
-                      to="/report"
-                    >
-                      Complete Tasks report
-                    </Link>
-                  </li>
+                  {role === "5" && (
+                    <>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          style={{ backgroundColor: "transparent" }}
+                          to="/report"
+                        >
+                          full report
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          style={{ backgroundColor: "transparent" }}
+                          to="/report2"
+                        >
+                          Short report
+                        </Link>
+                      </li>
+                    </>
+                  )}
                   <li>
                     <Link
                       className="dropdown-item"

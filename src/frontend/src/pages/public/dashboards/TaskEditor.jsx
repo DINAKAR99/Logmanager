@@ -108,7 +108,7 @@ const TaskDashboardWithFilter = ({ empId }) => {
       {tasks.length > 0 ? (
         <form onSubmit={handleSubmit}>
           <div
-            className="task-dashboard-container"
+            className="task-dashboard-container m-2"
             style={{ overflowX: "scroll" }}
           >
             {/* Render Tasks in the same layout as Employee Dashboard */}
