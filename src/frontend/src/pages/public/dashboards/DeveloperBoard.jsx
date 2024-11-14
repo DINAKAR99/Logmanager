@@ -36,22 +36,43 @@ const DeveloperBoard = () => {
   const members = {
     EODB: [
       { id: "2397", name: "Dinakar" },
-      { id: "M002", name: "Bob" },
+      { id: "2175", name: "Rajitha" },
+      { id: "1685", name: "Santhosh" },
     ],
     RTC: [
-      { id: "M003", name: "Charlie" },
-      { id: "M004", name: "Diana" },
+      { id: "2233", name: "Anusha" },
+      { id: "2398", name: "Prasanthi" },
+      { id: "2290", name: "Srujana" },
+      { id: "2019", name: "Saradhi" },
+      { id: "2247", name: "Sripoojitha" },
+      { id: "2425", name: "Rijwan" },
+      { id: "2231", name: "Sneha" },
+      { id: "2375", name: "Fariha Fatima" },
+      { id: "2371", name: "Gangalatha" },
+      { id: "2237", name: "Shravya" },
+    ],
+    MIV: [
+      { id: "2233", name: "Anusha" },
+      { id: "2398", name: "Prasanthi" },
+      { id: "2290", name: "Srujana" },
+      { id: "2019", name: "Saradhi" },
+      { id: "2247", name: "Sripoojitha" },
+      { id: "2425", name: "Rijwan" },
+      { id: "2231", name: "Sneha" },
+      { id: "2375", name: "Fariha Fatima" },
+      { id: "2371", name: "Gangalatha" },
+      { id: "2237", name: "Shravya" },
     ],
   };
 
   const modules = {
-    BLR: [{ id: "BLR", name: "BLR" }],
-    LBR: [{ id: "LBR", name: "LBR" }],
-    FCT: [{ id: "FCT", name: "FCT" }],
-    ROW: [{ id: "ROW", name: "ROW" }],
+    BLR: [{ id: "NA", name: "NA" }],
+    LBR: [{ id: "NA", name: "NA" }],
+    FCT: [{ id: "NA", name: "NA" }],
+    ROW: [{ id: "NA", name: "NA" }],
     RC: [
-      { id: "M1", name: "Module D1" },
-      { id: "M2", name: "Module D2" },
+      { id: "M1", name: "Module 1" },
+      { id: "M2", name: "Module 2" },
     ],
   };
 

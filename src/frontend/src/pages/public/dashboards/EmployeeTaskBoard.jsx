@@ -38,10 +38,10 @@ const EmployeeTaskBoard = () => {
   };
 
   const modules = {
-    BLR: [{ id: "BLR", name: "BLR" }],
-    LBR: [{ id: "LBR", name: "LBR" }],
-    FCT: [{ id: "FCT", name: "FCT" }],
-    ROW: [{ id: "ROW", name: "ROW" }],
+    BLR: [{ id: "NA", name: "NA" }],
+    LBR: [{ id: "NA", name: "NA" }],
+    FCT: [{ id: "NA", name: "NA" }],
+    ROW: [{ id: "NA", name: "NA" }],
     RC: [
       { id: "M1", name: "Module D1" },
       { id: "M2", name: "Module D2" },
