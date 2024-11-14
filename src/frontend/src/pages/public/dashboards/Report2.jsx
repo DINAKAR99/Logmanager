@@ -165,7 +165,7 @@ const Report2 = ({ empId = null }) => {
                     Actual Hours
                   </th> */}
                   <th style={{ border: "1px solid black", padding: "8px" }}>
-                    Time Spent (plannedHours - actualHours)
+                    Time Spent (  actualHours)
                   </th>
                   <th style={{ border: "1px solid black", padding: "8px" }}>
                     Status
@@ -219,7 +219,7 @@ const Report2 = ({ empId = null }) => {
                         {task.actualHours}
                       </td> */}
                       <td style={{ border: "1px solid black", padding: "8px" }}>
-                        {task.plannedHours - task.actualHours}
+                        { task.actualHours}
                       </td>
                       <td style={{ border: "1px solid black", padding: "8px" }}>
                         {task.status}
