@@ -51,10 +51,7 @@ public class TaskController {
     @PostMapping("/tasks/range")
     public ResponseEntity<List<Task>> getTasksByDateRange(@RequestBody DateRangeRequest request) {
         LocalDate fromDate = request.getFromDate();
-        LocalDate toDate = request.getToDate();
-        // String memberId =
-        // SecurityContextHolder.getContext().getAuthentication().getName(); // Assuming
-        // you have member ID from JWT
+        LocalDate toDate = request.getToDate(); 
         System.out.println(request.getEmpid() + "0-------------------");
         List<Task> tasks = taskService.findTasksByDateRange(request.getEmpid(), fromDate, toDate);
 

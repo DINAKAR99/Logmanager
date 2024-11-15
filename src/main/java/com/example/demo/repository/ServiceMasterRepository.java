@@ -17,7 +17,7 @@ public interface ServiceMasterRepository extends JpaRepository<ServiceMaster, Lo
 
   List<ServiceMaster> findAllByDeleteFlagOrderByServiceIdAsc(String deleteFlag);
 
-  @Query(value = "select * from services_mst ms where service_id in (select service_id from lm_role_services where role_id=?1 ) order by display_order", nativeQuery = true)
+  @Query(value = "select * from lm_services_mst ms where service_id in (select service_id from lm_role_services where role_id=?1 ) order by display_order", nativeQuery = true)
   List<ServiceMaster> getAllServicesByRole(int roleId);
 
   @Transactional

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { publicAxios } from "../../../service/Interceptor"; // Assuming you're using axios for the API call
-import PublicLayout from "../../../Layouts/PublicLayout";
 import { Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
+import { publicAxios } from "../../../service/Interceptor"; // Assuming you're using axios for the API call
 
 const TaskDashboard = ({ empId = null }) => {
   const [tasks, setTasks] = useState([]);
@@ -122,10 +121,13 @@ const TaskDashboard = ({ empId = null }) => {
             <tr>
               {/* Table headers */}
               <th style={{ border: "1px solid black", padding: "8px" }}>
+                S.No
+              </th>
+              <th style={{ border: "1px solid black", padding: "8px" }}>
                 Project Code
               </th>
               <th style={{ border: "1px solid black", padding: "8px" }}>
-                Module ID
+                Module Code
               </th>
               <th style={{ border: "1px solid black", padding: "8px" }}>
                 Member ID
@@ -181,6 +183,9 @@ const TaskDashboard = ({ empId = null }) => {
             {tasks.length > 0 ? (
               tasks.map((task, index) => (
                 <tr key={`${task.taskId}-${index}`}>
+                  <td style={{ border: "1px solid black", padding: "8px" }}>
+                    {task.id}
+                  </td>
                   <td style={{ border: "1px solid black", padding: "8px" }}>
                     {task.projectCode}
                   </td>
@@ -240,10 +245,10 @@ const TaskDashboard = ({ empId = null }) => {
             ) : (
               <tr>
                 <td
-                  colSpan="17"
+                  colSpan="18"
                   style={{ textAlign: "center", padding: "8px" }}
                 >
-                  No tasks for the selected date range.
+                  No tasks for the selected date range
                 </td>
               </tr>
             )}

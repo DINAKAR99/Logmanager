@@ -158,6 +158,15 @@ public class Authcontroller {
         user.setRealPassword(details.getPassword());
         user.setCreatedIpAddress(request.getRemoteAddr());
         Role role = roleRepository.findByRoleId(1);
+        if (role == null) {
+            // Create a new Role and save it if not found
+            role = new Role(); 
+            role.setDescription("USER"); 
+            role.setRoleName("USER");  
+            roleRepository.save(role);
+            
+        }
+         
         user.setRole(role);
         userRepository.save(user);
         return new ResponseEntity<>("Signup successfull", HttpStatus.OK);

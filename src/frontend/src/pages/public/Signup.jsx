@@ -45,7 +45,11 @@ const Signup = () => {
           return true;
         }
       }),
-    empid: yup.string().required("Employee id Required"),
+    empid: yup
+      .string()
+      .required("Employee id Required")
+      .min(4, "Employee id should be at least 4 characters long")
+      .max(4, "Employee id can be maximum 4 characters long"),
     password: yup
       .string()
       .required("Password Required")
@@ -287,7 +291,7 @@ const Signup = () => {
                   id="empid"
                   {...register("empid")}
                 />
-                {errors.user && (
+                {errors.empid && (
                   <p className="text-danger">{errors.empid.message}</p>
                 )}
               </div>

@@ -4,5 +4,5 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/court/", // Ensure all assets are prefixed with /court/
+  base: "/logmanager/", // Ensure all assets are prefixed with /logmanager/
 });

@@ -1,3 +1,5 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Includes Popper.js
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -14,17 +16,12 @@ import Login from "./pages/public/Login";
 import SessionExpired from "./pages/public/SessionExpired";
 import Signup from "./pages/public/Signup";
 import SucessfullSignup from "./pages/public/SucessfullSignup";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Includes Popper.js
-import TableWithManualExport from "./Layouts/TableWithManualExport";
-import Log from "./pages/public/Log";
-import DeveloperBoard from "./pages/public/dashboards/DeveloperBoard";
-import DevDashboard from "./pages/public/dashboards/DevDashboard";
-import EmployeeTaskBoard from "./pages/public/dashboards/EmployeeTaskBoard";
-import TaskDashboard from "./pages/public/dashboards/TaskDashboard";
 import CompleteReport from "./pages/public/dashboards/CompleteReport";
-import TaskEditor from "./pages/public/dashboards/TaskEditor.jsx";
+import DevDashboard from "./pages/public/dashboards/DevDashboard";
+import DeveloperBoard from "./pages/public/dashboards/DeveloperBoard";
+import EmployeeTaskBoard from "./pages/public/dashboards/EmployeeTaskBoard";
 import Report2 from "./pages/public/dashboards/Report2.jsx";
+import TaskEditor from "./pages/public/dashboards/TaskEditor.jsx";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -50,7 +47,6 @@ function App() {
           <Toaster />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/b/a" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/about" element={<About />} />
@@ -58,10 +54,7 @@ function App() {
               path="/protected"
               element={<ProtectedRoute element={<Protected />} />}
             />
-            <Route
-              path="/taskByAdmin"
-              element={<ProtectedRoute element={<DeveloperBoard />} />}
-            />
+
             <Route
               path="/assignedTasks"
               element={<ProtectedRoute element={<DevDashboard />} />}
@@ -77,6 +70,10 @@ function App() {
             <Route
               path="/taskByUser"
               element={<ProtectedRoute element={<EmployeeTaskBoard />} />}
+            />
+            <Route
+              path="/taskByAdmin"
+              element={<ProtectedRoute element={<DeveloperBoard />} />}
             />
             <Route
               path="/editTaskByUser"

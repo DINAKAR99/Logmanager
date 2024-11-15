@@ -31,13 +31,12 @@ const SucessfullSignup = () => {
           <div>
             <Button
               type="submit"
-              href="court/#/login"
+              href="logmanager/#/login"
               variant="contained"
               className=" mt-3  "
             >
               Login
             </Button>
-             
           </div>
         </div>
       </div>

@@ -15,18 +15,17 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     @Query("SELECT t FROM Task t WHERE t.memberId = :memberId AND t.fromDate = :currentDate")
     List<Task> findTasksForToday(@Param("memberId") String memberId, @Param("currentDate") LocalDate currentDate);
 
-    @Query("SELECT t FROM Task t WHERE t.fromDate >= :fromDate AND t.fromDate <= :toDate AND t.memberId = :memberId ORDER BY  t.id ASC")
+    @Query("SELECT t FROM Task t WHERE t.fromDate >= :fromDate AND t.fromDate <= :toDate AND t.memberId = :memberId ORDER BY  t.fromDate ASC")
     List<Task> findTasksByDateRange(@Param("memberId") String memberId, @Param("fromDate") LocalDate fromDate,
             @Param("toDate") LocalDate toDate);
 
-    @Query("SELECT t FROM Task t WHERE t.fromDate >= :fromDate AND t.fromDate <= :toDate  ORDER BY t.memberId ASC,t.taskId ASC,t.subtaskId ASC")
+    @Query("SELECT t FROM Task t WHERE t.fromDate >= :fromDate AND t.fromDate <= :toDate  ORDER BY t.memberId ASC,t.taskId ASC,t.subtaskId ASC,t.fromDate ASC")
     List<Task> findTasksByDateRangeAll(@Param("fromDate") LocalDate fromDate,
             @Param("toDate") LocalDate toDate);
 
     @Query("SELECT COUNT(t) FROM Task t WHERE t.projectCode = :projectCode")
     Long countTasksByProjectCode(@Param("projectCode") String projectCode);
 
-    @Query("SELECT t FROM Task t ORDER BY t.memberId ASC,t.taskId ASC,t.subtaskId ASC")
-    List<Task> findTasksByProjectCodeOrdered();
+ 
 
 }

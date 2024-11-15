@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PublicLayout from "../../../Layouts/PublicLayout";
 import { publicAxios } from "../../../service/Interceptor";
 import toast from "react-hot-toast";
+import { Button } from "@mui/material";
 
 const EmployeeTaskBoard = () => {
   const [teamId, setTeamId] = useState("");
@@ -25,16 +26,14 @@ const EmployeeTaskBoard = () => {
 
   const projects = {
     EODB: [
-      { code: "BLR", name: "BOILERS" },
-      { code: "FCT", name: "FACTORIES" },
-      { code: "LBR", name: "LABOUR" },
+      { code: "BLR", name: "TGBOILERS" },
+      { code: "FCT", name: "TGFACTORIES" },
+      { code: "LBR", name: "TGLABOUR" },
       { code: "ROW", name: "TFIBER" },
-      { code: "RC", name: "ROAD-CUTTING" },
+      { code: "RC", name: "TGROAD-CUTTING" },
     ],
-    RTC: [
-      { code: "P003", name: "Project Gamma" },
-      { code: "P004", name: "Project Delta" },
-    ],
+    RTC: [{ code: "RTC", name: "TGRTC" }],
+    MIV: [{ code: "MIV", name: "TGMIV" }],
   };
 
   const modules = {
@@ -42,10 +41,9 @@ const EmployeeTaskBoard = () => {
     LBR: [{ id: "NA", name: "NA" }],
     FCT: [{ id: "NA", name: "NA" }],
     ROW: [{ id: "NA", name: "NA" }],
-    RC: [
-      { id: "M1", name: "Module D1" },
-      { id: "M2", name: "Module D2" },
-    ],
+    RC: [{ id: "NA", name: "NA" }],
+    RTC: [{ id: "NA", name: "NA" }],
+    MIV: [{ id: "NA", name: "NA" }],
   };
 
   const categories = ["CR", "MR", "TM", "PI"];
@@ -119,9 +117,7 @@ const EmployeeTaskBoard = () => {
 
   const addTaskRow = () => {
     if (!teamId || !projectCode || !moduleId || !memberId) {
-      toast.error(
-        "Please select team, project, module, and member before adding a task."
-      );
+      toast.error("Please select team, project, module before adding a task.");
       return;
     }
     console.log(tasks);
@@ -163,7 +159,7 @@ const EmployeeTaskBoard = () => {
     e.preventDefault();
     if (!teamId || !projectCode || !moduleId || !memberId) {
       toast.error(
-        "Please select team, project, module, and member before submitting tasks."
+        "Please select team, project, module before submitting tasks."
       );
       return;
     }
@@ -298,10 +294,24 @@ const EmployeeTaskBoard = () => {
               ))}
           </select>
         </div>
-
+        {!teamId || !projectCode || !moduleId || !memberId ? (
+          <div className="text-center">
+            <div>Note: Please select Team, Project, and Module to continue</div>
+          </div>
+        ) : null}
         <form onSubmit={handleSubmit}>
-          <div style={{ overflowX: "scroll" }}>
-            <table style={{ width: "130%" }} className="table-bordered  ">
+          <div
+            style={{
+              overflowX: "scroll",
+              pointerEvents:
+                !teamId || !projectCode || !moduleId || !memberId
+                  ? "none"
+                  : "auto",
+              opacity:
+                !teamId || !projectCode || !moduleId || !memberId ? 0.6 : 1,
+            }}
+          >
+            <table style={{ width: "130%" }} className="table-bordered ">
               <thead>
                 <tr>
                   <th>Project Code</th>
@@ -309,7 +319,7 @@ const EmployeeTaskBoard = () => {
                   <th>Assigned To</th>
                   <th>Task ID</th>
                   <th>Description</th>
-                  <th>Subtask ID</th>
+                  <th style={{ width: 105 }}>Subtask ID</th>
                   <th>Subtask Description</th>
                   <th>From Date</th>
                   <th>To Date</th>
@@ -441,8 +451,11 @@ const EmployeeTaskBoard = () => {
                         type="date"
                         name="fromDate"
                         required
+                        style={{ minWidth: 130 }}
                         value={task.fromDate}
                         onChange={(e) => handleTaskChange(index, e)}
+                        min="2024-10-01" // Minimum date allowed
+                        max="2025-12-31" // Maximum date allowed
                       />
                     </td>
                     <td>
@@ -450,9 +463,12 @@ const EmployeeTaskBoard = () => {
                         className="form-control"
                         type="date"
                         name="toDate"
+                        style={{ minWidth: 130 }}
                         required
                         value={task.toDate}
                         onChange={(e) => handleTaskChange(index, e)}
+                        min="2024-10-01" // Minimum date allowed
+                        max="2025-12-31" // Maximum date allowed
                       />
                     </td>
                     <td>
@@ -461,8 +477,11 @@ const EmployeeTaskBoard = () => {
                         type="date"
                         name="actualStartDate"
                         required
+                        style={{ minWidth: 130 }}
                         value={task.actualStartDate}
                         onChange={(e) => handleTaskChange(index, e)}
+                        min="2024-10-01" // Minimum date allowed
+                        max="2025-12-31" // Maximum date allowed
                       />
                     </td>
                     <td>
@@ -471,8 +490,11 @@ const EmployeeTaskBoard = () => {
                         type="date"
                         name="actualEndDate"
                         required
+                        style={{ minWidth: 130 }}
                         value={task.actualEndDate}
                         onChange={(e) => handleTaskChange(index, e)}
+                        min="2024-10-01" // Minimum date allowed
+                        max="2025-12-31" // Maximum date allowed
                       />
                     </td>
                     <td>
@@ -481,6 +503,7 @@ const EmployeeTaskBoard = () => {
                         type="number"
                         name="plannedHours"
                         required
+                        max={7}
                         style={{ minWidth: 90 }}
                         value={task.plannedHours}
                         onChange={(e) => handleTaskChange(index, e)}
@@ -520,6 +543,7 @@ const EmployeeTaskBoard = () => {
                         className="form-select"
                         name="category"
                         required
+                        style={{ minWidth: 90 }}
                         value={task.category}
                         onChange={(e) => handleTaskChange(index, e)}
                       >
@@ -535,6 +559,7 @@ const EmployeeTaskBoard = () => {
                       <select
                         className="form-select"
                         name="priority"
+                        style={{ minWidth: 110 }}
                         required
                         value={task.priority}
                         onChange={(e) => handleTaskChange(index, e)}
@@ -552,6 +577,7 @@ const EmployeeTaskBoard = () => {
                         className="form-select"
                         name="complexity"
                         required
+                        style={{ minWidth: 90 }}
                         value={task.complexity}
                         onChange={(e) => handleTaskChange(index, e)}
                       >
@@ -580,7 +606,14 @@ const EmployeeTaskBoard = () => {
             </table>
           </div>
           <div className="text-center mt-3">
-            <button type="submit">Submit All Tasks</button>
+            <Button
+              variant="contained"
+              className="ms-2"
+              style={{ marginLeft: "20px" }}
+              type="submit"
+            >
+              Submit All Tasks
+            </Button>
           </div>
         </form>
       </PublicLayout>

@@ -209,6 +209,7 @@ const TaskDashboardWithFilter = ({ empId }) => {
                       <select
                         className="form-select"
                         type="number"
+                        required
                         name="subtaskId"
                         style={{ minWidth: 90 }}
                         value={task.subtaskId ? task.subtaskId : "0"}
@@ -253,18 +254,24 @@ const TaskDashboardWithFilter = ({ empId }) => {
                     </td>
                     <td>
                       <input
+                        required
                         type="date"
                         name="fromDate"
                         value={task.fromDate}
+                        min="2024-10-01" // Minimum date allowed
+                        max="2025-12-31" // Maximum date allowed
                         onChange={(e) => handleTaskChange(index, e)}
                       />
                     </td>
                     <td>
                       <input
                         className="form-control"
+                        required
                         type="date"
                         name="toDate"
                         value={task.toDate}
+                        min="2024-10-01" // Minimum date allowed
+                        max="2025-12-31" // Maximum date allowed
                         onChange={(e) => handleTaskChange(index, e)}
                       />
                     </td>
@@ -272,6 +279,8 @@ const TaskDashboardWithFilter = ({ empId }) => {
                       <input
                         type="date"
                         name="actualStartDate"
+                        min="2024-10-01" // Minimum date allowed
+                        max="2025-12-31" // Maximum date allowed
                         value={task.actualStartDate}
                         onChange={(e) => handleTaskChange(index, e)}
                       />
@@ -280,6 +289,8 @@ const TaskDashboardWithFilter = ({ empId }) => {
                       <input
                         type="date"
                         name="actualEndDate"
+                        min="2024-10-01" // Minimum date allowed
+                        max="2025-12-31" // Maximum date allowed
                         value={task.actualEndDate}
                         onChange={(e) => handleTaskChange(index, e)}
                       />
@@ -287,9 +298,11 @@ const TaskDashboardWithFilter = ({ empId }) => {
                     <td>
                       <input
                         type="number"
+                        required
                         style={{ minWidth: 90 }}
                         className="form-control"
                         name="plannedHours"
+                        max={7}
                         value={task.plannedHours}
                         onChange={(e) => handleTaskChange(index, e)}
                       />
@@ -299,6 +312,7 @@ const TaskDashboardWithFilter = ({ empId }) => {
                         type="number"
                         className="form-control"
                         name="actualHours"
+                        max={7}
                         style={{ minWidth: 90 }}
                         value={task.actualHours}
                         onChange={(e) => handleTaskChange(index, e)}
@@ -306,6 +320,7 @@ const TaskDashboardWithFilter = ({ empId }) => {
                     </td>
                     <td>
                       <select
+                        required
                         name="status"
                         value={task.status}
                         onChange={(e) => handleTaskChange(index, e)}
@@ -313,6 +328,7 @@ const TaskDashboardWithFilter = ({ empId }) => {
                         <option value="Hold">Hold</option>
                         <option value="InProgress">In Progress</option>
                         <option value="Closed">Closed</option>
+                        <option value="Scheduled">Scheduled</option>
                       </select>
                     </td>
                     <td>
@@ -335,6 +351,7 @@ const TaskDashboardWithFilter = ({ empId }) => {
                     <td>
                       <select
                         name="priority"
+                        required
                         value={task.priority}
                         onChange={(e) => handleTaskChange(index, e)}
                       >
@@ -346,6 +363,7 @@ const TaskDashboardWithFilter = ({ empId }) => {
                     <td>
                       <select
                         name="complexity"
+                        required
                         value={task.complexity}
                         onChange={(e) => handleTaskChange(index, e)}
                       >

@@ -21,14 +21,14 @@ const DeveloperBoard = () => {
 
   const projects = {
     EODB: [
-      { code: "BLR", name: "BOILERS" },
-      { code: "FCT", name: "FACTORIES" },
-      { code: "LBR", name: "LABOUR" },
+      { code: "BLR", name: "TGBOILERS" },
+      { code: "FCT", name: "TGFACTORIES" },
+      { code: "LBR", name: "TGLABOUR" },
       { code: "ROW", name: "TFIBER" },
-      { code: "RC", name: "ROAD-CUTTING" },
+      { code: "RC", name: "TGROAD-CUTTING" },
     ],
-    RTC: [{ code: "RTC", name: "Project RTC" }],
-    MIV: [{ code: "MIV", name: "Project MIV" }],
+    RTC: [{ code: "RTC", name: "TGRTC" }],
+    MIV: [{ code: "MIV", name: "TGMIV" }],
   };
 
   const members = {
@@ -68,10 +68,7 @@ const DeveloperBoard = () => {
     LBR: [{ id: "NA", name: "NA" }],
     FCT: [{ id: "NA", name: "NA" }],
     ROW: [{ id: "NA", name: "NA" }],
-    RC: [
-      { id: "M1", name: "Module 1" },
-      { id: "M2", name: "Module 2" },
-    ],
+    RC: [{ id: "NA", name: "NA" }],
     RTC: [{ id: "NA", name: "NA" }],
     MIV: [{ id: "NA", name: "NA" }],
   };
@@ -81,7 +78,7 @@ const DeveloperBoard = () => {
   const categories = ["CR", "MR", "TM", "PI"];
   const priorities = ["Low", "Medium", "High"];
   const complexities = ["1", "2", "3", "4", "5", "6", "7", "8"];
-  const statuses = ["Hold", "InProgress", "Closed"];
+  const statuses = ["Hold", "InProgress", "Closed", "Scheduled"];
 
   useEffect(() => {
     if (projectCode) {
@@ -130,7 +127,7 @@ const DeveloperBoard = () => {
           category: "",
           priority: "",
           complexity: "",
-          status: "",
+          status: "Scheduled",
         },
       ]);
     }
@@ -333,9 +330,25 @@ const DeveloperBoard = () => {
               ))}
           </select>
         </div>
-
+        {!teamId || !projectCode || !moduleId || !memberId ? (
+          <div className="text-center">
+            <div>
+              Note: Please select Team, Project,Module and Member to continue
+            </div>
+          </div>
+        ) : null}
         <form onSubmit={handleSubmit}>
-          <div style={{ overflowX: "scroll" }}>
+          <div
+            style={{
+              overflowX: "scroll",
+              pointerEvents:
+                !teamId || !projectCode || !moduleId || !memberId
+                  ? "none"
+                  : "auto",
+              opacity:
+                !teamId || !projectCode || !moduleId || !memberId ? 0.6 : 1,
+            }}
+          >
             <table style={{ width: "130%" }} className="table-bordered ">
               <thead>
                 <tr>
@@ -344,7 +357,7 @@ const DeveloperBoard = () => {
                   <th>Assigned To</th>
                   <th>Task ID</th>
                   <th>Description</th>
-                  <th>Subtask ID</th>
+                  <th style={{ width: 105 }}>Sub Task No</th>
                   <th>Subtask Description</th>
                   <th>From Date</th>
                   <th>To Date</th>
@@ -469,16 +482,22 @@ const DeveloperBoard = () => {
                         className="form-control"
                         type="date"
                         name="fromDate"
+                        style={{ minWidth: 130 }}
                         value={task.fromDate}
                         onChange={(e) => handleTaskChange(index, e)}
                         required
+                        min="2024-10-01" // Minimum date allowed
+                        max="2025-12-31" // Maximum date allowed
                       />
                     </td>
                     <td>
                       <input
                         className="form-control"
                         type="date"
+                        style={{ minWidth: 130 }}
                         name="toDate"
+                        min="2024-10-01" // Minimum date allowed
+                        max="2025-12-31" // Maximum date allowed
                         value={task.toDate}
                         onChange={(e) => handleTaskChange(index, e)}
                         required
@@ -489,6 +508,7 @@ const DeveloperBoard = () => {
                         type="number"
                         className="form-control"
                         name="plannedHours"
+                        max={7}
                         value={task.plannedHours}
                         onChange={(e) => handleTaskChange(index, e)}
                         placeholder=""
@@ -500,7 +520,7 @@ const DeveloperBoard = () => {
                         className="form-select"
                         name="status"
                         required
-                        value={task.status}
+                        value={task.status || "Scheduled"}
                         onChange={(e) => handleTaskChange(index, e)}
                       >
                         <option value="">--</option>
