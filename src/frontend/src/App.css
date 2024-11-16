@@ -107,6 +107,17 @@ table {
   100% {
   }
 }
+/* Style for the "Logify" text */
+.logify-text {
+  font-weight: bold;
+  font-size: 60px;
+  color: rgb(0, 69, 172);
+}
+
+.typewriter-text {
+  font-family: 'Courier New', Courier, monospace; /* Optional: gives a typing effect font */
+}
+
 .drop-from-right {
   animation: drop-from-right 1s ease-in-out;
 }

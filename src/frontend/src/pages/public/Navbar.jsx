@@ -78,8 +78,17 @@ const Navbarr = () => {
         }}
       >
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            LogManager
+          <Link
+            className="navbar-brand"
+            to="#"
+            style={{
+              fontFamily: "'Comic Sans MS', Courier, monospace",
+              fontSize: 25,
+              color: "rgb(0, 69, 172)",
+              fontWeight: 900,
+            }} // Custom font family
+          >
+            Logify
           </Link>
           <button
             className="navbar-toggler"
