@@ -19,7 +19,7 @@ public class RefreshTokenService {
     private static final Logger logger = LoggerFactory.getLogger(RefreshTokenService.class);
 
     // You can make this configurable if needed
-    private final long refreshTokenValidity = 1* 60 * 1000; // 30 minutes in milliseconds
+    private final long refreshTokenValidity = 30 * 60 * 1000; // 30 minutes in milliseconds
 
     @Autowired
     private UserRepository userRepo;
