@@ -8,26 +8,32 @@ export const isLoggedIn = () => {
 // ----------------------------------------------------------------
 export const doLogin = (response) => {
   if (response.status === 200) {
+    // Encrypt user data and token
     const encryptedUserData = encrypt(JSON.stringify(response.data));
-    const encryptedUserToken = encrypt(JSON.stringify(response.data.jwttoken));
-
-    sessionStorage.setItem("fulldata", encryptedUserData);
-    sessionStorage.setItem("jwttoken", encryptedUserToken);
-    sessionStorage.setItem(
-      "rawJwtToken",
+    const encryptedUserJWToken = encrypt(
       JSON.stringify(response.data.jwttoken)
     );
+
+    // Store encrypted data in sessionStorage
+    sessionStorage.setItem("encrypted_complete_user_data", encryptedUserData);
+    sessionStorage.setItem("encrypted_jwt_token", encryptedUserJWToken);
     sessionStorage.setItem("username", response.data.username);
-    sessionStorage.setItem("empid", response.data.empid);
+    sessionStorage.setItem(
+      "empid",
+      encrypt(JSON.stringify(response.data.empid))
+    );
     sessionStorage.setItem("userid", response.data.userid);
     sessionStorage.setItem("role", response.data.role);
-    sessionStorage.setItem(
-      "refreshtoken",
-      response.data.refreshtoken.refreshToken
-    );
+
+    // Set login time
+    const loginTime = new Date().getTime(); // Capture current timestamp
+    sessionStorage.setItem("loginTime", loginTime);
+
+    // Mark the user as logged in
     sessionStorage.setItem("isLoggedIn", true);
   }
 };
+
 export const doLogout = () => {
   sessionStorage.clear();
   console.log("data removed from session");
@@ -43,14 +49,35 @@ export const doUpdate = (data) => {
 
 export const getCurrentUserDetails = () => {
   if (isLoggedIn()) {
-    console.log(JSON.parse(decrypt(sessionStorage.getItem("fulldata"))));
-    return JSON.parse(decrypt(sessionStorage.getItem("fulldata")));
+    console.log(
+      JSON.parse(
+        decrypt(sessionStorage.getItem("encrypted_complete_user_data"))
+      )
+    );
+    return JSON.parse(
+      decrypt(sessionStorage.getItem("encrypted_complete_user_data"))
+    );
   }
 };
 
 export const getJwtToken = () => {
+  if (isLoggedIn()) {
+    console.log(
+      JSON.parse(decrypt(sessionStorage.getItem("encrypted_jwt_token")))
+    );
+    return JSON.parse(decrypt(sessionStorage.getItem("encrypted_jwt_token")));
+  }
+};
+
+export const setJwtToken = (jwttoken) => {
+  return sessionStorage.setItem(
+    "encrypted_jwt_token",
+    encrypt(JSON.stringify(jwttoken))
+  );
+};
+export const getRefreshToken = () => {
   const user = getCurrentUserDetails();
-  return user?.jwttoken;
+  return user?.refreshtoken.refreshToken;
 };
 
 export const getUserName = () => {

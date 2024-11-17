@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import privateAxios from "../../service/Interceptor";
+import privateAxios, { publicAxios } from "../../service/Interceptor";
 import { doLogout } from "../../utility/AuthorizationUtils";
 import { NavLink as Starlink, useNavigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const Navbarr = () => {
 
   const logoutt = async () => {
     try {
-      const response = await privateAxios.post(
+      const response = await publicAxios.post(
         "/logoff",
         { username: sessionStorage.getItem("username") },
         {
@@ -80,7 +80,7 @@ const Navbarr = () => {
         <div className="container-fluid">
           <Link
             className="navbar-brand"
-            to="#"
+            to="/"
             style={{
               fontFamily: "'Comic Sans MS', Courier, monospace",
               fontSize: 25,
@@ -187,13 +187,16 @@ const Navbarr = () => {
                   About
                 </Link>
               </li>
+              {/* <li className="nav-item">
+                <Link className="nav-link" to="#" onClick={jwtTest}>
+                  fge
+                </Link>
+              </li> */}
 
               {isLoggedIn ? (
-                <li className="nav-item">
-                  <a className="nav-link" to="#" onClick={logoutt}>
-                    Logout
-                  </a>
-                </li>
+                <Link className="nav-link" to="#" onClick={logoutt}>
+                  Logout
+                </Link>
               ) : (
                 <>
                   <li className="nav-item">

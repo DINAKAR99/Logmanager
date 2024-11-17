@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { publicAxios } from "../../../service/Interceptor";
+import privateAxios, { publicAxios } from "../../../service/Interceptor";
 import toast from "react-hot-toast";
 import TaskDashboard from "./TaskDashboard"; // Assuming this is your original TaskDashboard layout
 import PublicLayout from "../../../Layouts/PublicLayout";
@@ -26,7 +26,7 @@ const TaskDashboardWithFilter = ({ empId }) => {
     }
 
     try {
-      const response = await publicAxios.post("/public/api/tasks/range", {
+      const response = await privateAxios.post("/api/tasks/range", {
         fromDate,
         toDate,
         empid: empId,
@@ -58,7 +58,7 @@ const TaskDashboardWithFilter = ({ empId }) => {
       toast.loading("Updating ...");
       setTimeout(() => {
         try {
-          const response = publicAxios.post("/public/api/tasks", {
+          const response = privateAxios.post("/api/tasks", {
             tasks: updatedTasks,
           });
           toast.dismiss();

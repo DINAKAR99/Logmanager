@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -65,7 +66,7 @@ public class Authcontroller {
     @Autowired
     private RefreshTokenService refreshTokenService;
 
-    @PostMapping("/login")
+    @PostMapping("/loginn")
     public ResponseEntity<?> login(@RequestBody @Valid JwtRequest jwtRequest, BindingResult bindingResult,
             HttpServletRequest request,
             HttpServletResponse response) throws IOException, ServletException {
@@ -119,10 +120,23 @@ public class Authcontroller {
                 .jwttoken(token)
                 .username(userByUsername.getUsername())
                 .userid(user1.getUserId())
-                .empid(user1.getEmpid())
-                .refreshtoken(refreshToken)
+                .empid(user1.getEmpid())  
                 .role(user1.getRole().getRoleId())
                 .build();
+
+         // Set refresh token as HttpOnly cookie
+        Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken.getRefreshToken());
+        refreshTokenCookie.setHttpOnly(true);  // Prevent JavaScript access
+        refreshTokenCookie.setSecure(false);    // Only send over HTTPS
+        refreshTokenCookie.setPath("/");       // Accessible across the site
+        refreshTokenCookie.setMaxAge(60 * 60 * 24); // Expire in 1 day
+       
+
+        
+
+        // Add the cookie to the response
+        response.addCookie(refreshTokenCookie);
+
 
         System.out.println(jwtResponse.toString());
 
@@ -175,7 +189,8 @@ public class Authcontroller {
     @GetMapping("checkuser/{name}")
     public ResponseEntity<String> checkUser(@PathVariable String name) {
         User byUserName = null;
-        byUserName = userRepository.findByUserName(name);
+        byUserName = userRepository.findByUserNameIgnoreCase(name);
+        System.out.println(byUserName);
 
         if (byUserName != null) {
 

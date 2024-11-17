@@ -1,15 +1,17 @@
 import React from "react";
 import PublicLayout from "../../Layouts/PublicLayout";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const SessionExpired = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <PublicLayout>
         <div className="text-center ">
           <br />
           <br />
-          <div className="container text-center mt-5 p-4 border rounded shadow-lg">
+          <div className="container text-center mt-5 p-4 border rounded shadow-lg drop-from-top">
             <div className="alert alert-danger">
               <h4 className="alert-heading">Your Session Expired</h4>
               <p className="mb-0">Please log in again</p>

@@ -20,7 +20,7 @@ import com.example.demo.repository.TaskRepository;
 import com.example.demo.services.TaskService;
 
 @RestController
-@RequestMapping("/public/api")
+@RequestMapping("/protected/api")
 public class TaskController {
 
     private final TaskService taskService;
@@ -32,7 +32,7 @@ public class TaskController {
     }
 
     @PostMapping("/tasks")
-    public ResponseEntity<String> receiveTasks(@RequestBody TaskRequest request) {
+    public ResponseEntity<String> saveTasks(@RequestBody TaskRequest request) {
         List<Task> tasks = request.getTasks();
 
         // Save tasks to the database

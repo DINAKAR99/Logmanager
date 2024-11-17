@@ -9,6 +9,8 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.model.User;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -17,7 +19,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtHelper {
 
     // requirement :
-    public static final long JWT_TOKEN_VALIDITY = 5 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 1 * 60;
 
     // public static final long JWT_TOKEN_VALIDITY = 60;
     private String secret = "afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
@@ -55,6 +57,11 @@ public class JwtHelper {
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return doGenerateToken(claims, userDetails.getUsername());
+    }
+    // generate token for user
+    public String generateTokenByUser(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        return doGenerateToken(claims, user.getUserName());
     }
 
     // while creating the token -

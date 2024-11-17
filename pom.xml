@@ -122,7 +122,7 @@
 				<configuration>
 					<update>true</update>
 					<url>${maven.tomcat.url}</url>
-					<path>/logify</path>
+					<path>/Logify</path>
 					<username>${tomcat.username}</username>
 					<password>${tomcat.password}</password>
 				</configuration>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import PublicLayout from "../../../Layouts/PublicLayout";
-import { publicAxios } from "../../../service/Interceptor";
+import privateAxios, { publicAxios } from "../../../service/Interceptor";
 import toast from "react-hot-toast";
 import { Button } from "@mui/material";
+import { decrypt } from "../../../utility/EncrDecr";
 
 const EmployeeTaskBoard = () => {
   const [teamId, setTeamId] = useState("");
@@ -13,7 +14,7 @@ const EmployeeTaskBoard = () => {
   const [memberId, setMemberId] = useState("");
 
   useEffect(() => {
-    const empid = sessionStorage.getItem("empid");
+    const empid = JSON.parse(decrypt(sessionStorage.getItem("empid")));
     setMemberId(empid);
   }, []);
 
@@ -53,8 +54,8 @@ const EmployeeTaskBoard = () => {
 
   useEffect(() => {
     if (projectCode) {
-      publicAxios
-        .get(`/public/api/tasks/count?projectCode=${projectCode}`)
+      privateAxios
+        .get(`/api/tasks/count?projectCode=${projectCode}`)
         .then((response) => {
           console.log("API Response:", response); // Log the entire response
 
@@ -178,9 +179,9 @@ const EmployeeTaskBoard = () => {
         ...task,
       }));
       setTimeout(() => {
-        publicAxios
+        privateAxios
           .post(
-            "public/api/tasks",
+            "/api/tasks",
             {
               tasks: finalTasks,
             },

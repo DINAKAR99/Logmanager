@@ -182,7 +182,7 @@ public class LoginController {
   }
 
   @ResponseBody
-  @PostMapping("/logoff")
+  @PostMapping("/public/logoff")
   public ResponseEntity<String> logout(
       @RequestParam(value = "username", required = true) String username,
       HttpServletRequest request,
@@ -280,7 +280,7 @@ public class LoginController {
     return "dualLogin";
   }
 
-  @GetMapping("/test")
+  @GetMapping("protected/test")
   @ResponseBody
   public String getDetails() {
 

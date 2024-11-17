@@ -30,12 +30,14 @@ const Signup = () => {
         "Name cannot be 'Justin'",
         (value) => value?.toLowerCase() !== "justin"
       )
+      .matches(
+        /^[A-Za-z]+$/,
+        "Name must contain only letters (A-Z or a-z) and no spaces"
+      ) // Only letters allowed
       .test("check-username", "Username already taken", async (value) => {
         if (!value) return true; // Skip validation if no value is entered
         try {
-          const response = await publicAxios.get(
-            `/public/auth/checkuser/${value}`
-          );
+          const response = await publicAxios.get(`/auth/checkuser/${value}`);
           if (response.status == 200) {
             return false;
           }
@@ -53,11 +55,13 @@ const Signup = () => {
     password: yup
       .string()
       .required("Password Required")
+      .matches(/^[^\s]*$/, "Password cannot contain spaces") // Regex to check for spaces
       .min(6, "Password length must be greater than or equal 6 characters")
       .max(8, "Password length can't be more than 8 characters"),
     passwordcheck: yup
       .string()
       .required("Required")
+      .matches(/^[^\s]*$/, "Password cannot contain spaces") // Regex to check for spaces
       .oneOf([yup.ref("password")], "Passwords must match")
       .min(6, "Password length must be greater than or equal 6 characters")
       .max(8, "Password length can't be more than 8 characters"),
@@ -177,15 +181,11 @@ const Signup = () => {
 
     setSubmitted(true); // Set form submission state
     try {
-      const response = await publicAxios.post(
-        "/public/auth/signup",
-        dataToSubmit,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await publicAxios.post("/auth/signup", dataToSubmit, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.status === 200) {
         setSubmitted(false);

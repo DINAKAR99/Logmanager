@@ -23,7 +23,7 @@ const Dualogin = () => {
       );
       if (response.status === 200) {
         SetLoggedOut(true);
-        console.log("Login successful:", response.data);
+        // console.log("Login successful:", response.data);
       }
     } catch (error) {
       console.error("Error:", error);

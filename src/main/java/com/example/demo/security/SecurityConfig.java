@@ -37,17 +37,31 @@ public class SecurityConfig {
   private JwtAuthFilter filter;
 
   @Bean
-  public CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); // Specify frontend origin
-    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-    configuration.setAllowedHeaders(Arrays.asList("*"));
-    configuration.setAllowCredentials(false); //
-
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", configuration);
-    return source;
+    CorsConfigurationSource corsConfigurationSource() {
+      CorsConfiguration configuration = new CorsConfiguration();
+      
+      // Specify frontend origin (React app running on port 5173)
+      configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+      
+      // Specify allowed HTTP methods
+      configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+      
+      // Specify allowed headers (you can also narrow this down)
+      configuration.setAllowedHeaders(Arrays.asList("*"));
+      
+      // Allow cookies to be sent (must be true to allow cookies)
+      configuration.setAllowCredentials(true);
+      
+      // Expose headers so the browser can access the 'Set-Cookie' header
+      configuration.setExposedHeaders(Arrays.asList("Set-Cookie"));
+      
+      // Create the URL-based configuration source and register it
+      UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+      source.registerCorsConfiguration("/**", configuration);
+      
+      return source;
   }
+  
 
   @Bean
   SecurityFilterChain getfilterchain(HttpSecurity httpsecurity) throws Exception {

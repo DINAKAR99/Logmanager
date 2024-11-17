@@ -12,5 +12,6 @@ public class JwtResponse {
     public int empid;
     public String teamid;
     public int role;
+    public String message;
     public RefreshToken refreshtoken;
 }

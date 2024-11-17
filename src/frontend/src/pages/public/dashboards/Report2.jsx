@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { publicAxios } from "../../../service/Interceptor"; // Assuming you're using axios for the API call
+import privateAxios, { publicAxios } from "../../../service/Interceptor"; // Assuming you're using axios for the API call
 import PublicLayout from "../../../Layouts/PublicLayout";
 import { Button } from "@mui/material";
 import * as XLSX from "xlsx";
@@ -17,9 +17,9 @@ const Report2 = ({ empId = null }) => {
 
       // Use different URLs depending on whether empId is provided or not
       if (empId) {
-        url = `/public/api/tasks/range/`; // Use empId-specific URL
+        url = `/api/tasks/range/`; // Use empId-specific URL
       } else {
-        url = `/public/api/tasks/range/all`; // Use default URL
+        url = `/api/tasks/range/all`; // Use default URL
       }
 
       // Prepare the request payload
@@ -34,7 +34,7 @@ const Report2 = ({ empId = null }) => {
       }
 
       // Make the API call with the constructed URL and requestData
-      const response = await publicAxios.post(url, requestData);
+      const response = await privateAxios.post(url, requestData);
 
       setTasks(response.data); // Store tasks in state
     } catch (error) {
@@ -165,7 +165,7 @@ const Report2 = ({ empId = null }) => {
                     Actual Hours
                   </th> */}
                   <th style={{ border: "1px solid black", padding: "8px" }}>
-                    Time Spent (  actualHours)
+                    Time Spent ( actualHours)
                   </th>
                   <th style={{ border: "1px solid black", padding: "8px" }}>
                     Status
@@ -219,7 +219,7 @@ const Report2 = ({ empId = null }) => {
                         {task.actualHours}
                       </td> */}
                       <td style={{ border: "1px solid black", padding: "8px" }}>
-                        { task.actualHours}
+                        {task.actualHours}
                       </td>
                       <td style={{ border: "1px solid black", padding: "8px" }}>
                         {task.status}

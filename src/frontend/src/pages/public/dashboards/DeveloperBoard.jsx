@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PublicLayout from "../../../Layouts/PublicLayout";
-import { publicAxios } from "../../../service/Interceptor";
+import privateAxios, { publicAxios } from "../../../service/Interceptor";
 import toast from "react-hot-toast";
 import { Button } from "@mui/material";
 
@@ -82,8 +82,8 @@ const DeveloperBoard = () => {
 
   useEffect(() => {
     if (projectCode) {
-      publicAxios
-        .get(`/public/api/tasks/count?projectCode=${projectCode}`)
+      privateAxios
+        .get(`/api/tasks/count?projectCode=${projectCode}`)
         .then((response) => {
           console.log("API Response:", response); // Log the entire response
 
@@ -201,9 +201,9 @@ const DeveloperBoard = () => {
         ...task,
       }));
       setTimeout(() => {
-        publicAxios
+        privateAxios
           .post(
-            "public/api/tasks",
+            "/api/tasks",
             {
               tasks: finalTasks,
             },

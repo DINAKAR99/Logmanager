@@ -37,6 +37,10 @@ const Login = () => {
     user: yup
       .string()
       .required("Username Required")
+      .matches(
+        /^[A-Za-z]+$/,
+        "Name must contain only letters (A-Z or a-z) and no spaces"
+      ) // Only letters allowed
       .test(
         "not-justin",
         "Name cannot be 'Justin'",
@@ -45,9 +49,7 @@ const Login = () => {
       .test("check-username", "User not found", async (value) => {
         if (!value) return true; // Skip validation if no value is entered
         try {
-          const response = await publicAxios.get(
-            `/public/auth/checkuser/${value}`
-          );
+          const response = await publicAxios.get(`/auth/checkuser/${value}`);
           if (!response.status == 200) {
             console.log("false" + response.status);
             return false;
@@ -58,12 +60,15 @@ const Login = () => {
           return false; // Consider this as a failed validation
         }
       }),
-    password: yup.string().required("Password Required"),
+    password: yup
+      .string()
+      .matches(/^[^\s]*$/, "Password cannot contain spaces"), // Regex to check for spacesrequired("Password Required"),
     // .min(6, "Password length must be greater than or equal 6 characters")
     // .max(8, "Password length can't be more than 8 characters"),
     captcha: yup
       .string()
       .required("Captcha Required")
+
       .test(
         "match-captcha",
         "Incorrect captcha",
@@ -177,7 +182,7 @@ const Login = () => {
 
     setSubmitted(true); // Set form submission state
     try {
-      const response = await publicAxios.post("/public/auth/login", data, {
+      const response = await publicAxios.post("/auth/loginn", data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -185,11 +190,13 @@ const Login = () => {
 
       if (response.status === 200) {
         setSubmitted(false);
-        console.log("Login successful:", response.data.jwttoken);
+        // console.log("Login successful:", response.data.jwttoken);
         doLogin(response);
-        console.log(response.data.role);
+        // console.log(response.data.role);
 
         if (response.data.role === 1) {
+          console.log("ddw");
+
           navigate("/assignedTasks");
         }
 
@@ -203,11 +210,10 @@ const Login = () => {
 
       if (error.response) {
         if (error.response.status === 401) {
-          console.error("Incorrect login attempt:", error.response.data);
+          toast.error(error.response.data.message);
           setMessage(error.response.data.message);
           // Handle incorrect login, show a message to the user
-        }
-        if (error.response.status === 400) {
+        } else if (error.response.status === 400) {
           console.error("DUAL login attempt:", error.response.data.name);
           setMessage("Dual login attempt failed");
           sessionStorage.setItem(

@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
-import { publicAxios } from "../../../service/Interceptor"; // Assuming you're using axios for the API call
+import privateAxios, { publicAxios } from "../../../service/Interceptor"; // Assuming you're using axios for the API call
 
 const TaskDashboard = ({ empId = null }) => {
   const [tasks, setTasks] = useState([]);
@@ -16,9 +16,9 @@ const TaskDashboard = ({ empId = null }) => {
 
       // Use different URLs depending on whether empId is provided or not
       if (empId) {
-        url = `/public/api/tasks/range/`; // Use empId-specific URL
+        url = `/api/tasks/range/`; // Use empId-specific URL
       } else {
-        url = `/public/api/tasks/range/all`; // Use default URL
+        url = `/api/tasks/range/all`; // Use default URL
       }
 
       // Prepare the request payload
@@ -33,7 +33,7 @@ const TaskDashboard = ({ empId = null }) => {
       }
 
       // Make the API call with the constructed URL and requestData
-      const response = await publicAxios.post(url, requestData);
+      const response = await privateAxios.post(url, requestData);
 
       setTasks(response.data); // Store tasks in state
     } catch (error) {
