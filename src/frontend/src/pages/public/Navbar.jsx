@@ -103,6 +103,7 @@ const Navbarr = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
+             {isLoggedIn ? (
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
@@ -182,11 +183,12 @@ const Navbarr = () => {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item">
+            ) : ""}
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/about">
                   About
                 </Link>
-              </li>
+              </li> */}
               {/* <li className="nav-item">
                 <Link className="nav-link" to="#" onClick={jwtTest}>
                   fge

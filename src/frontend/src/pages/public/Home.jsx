@@ -33,7 +33,7 @@ const Home = () => {
           </div>
 
           {/* Worklog Insights Section */}
-          <div id="worklog-insights" className="text-center my-5">
+          {/* <div id="worklog-insights" className="text-center my-5">
             <h2>Logify Worklog Insights</h2>
             <p>
               Gain valuable insights into your team's work hours and
@@ -65,10 +65,10 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Services Section */}
-          <div className="text-center my-5">
+          {/* <div className="text-center my-5">
             <h2>Our Services at Logify</h2>
             <p>
               We offer a range of services to streamline your workflow and
@@ -118,7 +118,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </PublicLayout>
     </div>
