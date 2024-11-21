@@ -18,7 +18,7 @@ const PublicLayout = ({ children }) => {
       >
         <div className="container text-center">
           <span className="text-muted">
-            © 2024 Logify. All Rights Reserved.
+            © 2024 worktracker.  
           </span>
           <div className="mt-2">
             <Link className="text-muted mx-2" to="/about">

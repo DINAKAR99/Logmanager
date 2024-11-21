@@ -13,7 +13,7 @@ const Home = () => {
               <Typewriter
                 options={{
                   strings: [
-                    "Welcome to <span class='logify-text'>Logify</span>",
+                    "Welcome to <span class='logify-text'>worktracker</span>",
                     "Track and Optimize Your Worklogs",
                   ],
                   autoStart: true,
@@ -24,7 +24,7 @@ const Home = () => {
               />
             </h1>
             <p className="lead text-muted">
-              Logify is your all-in-one platform for efficient worklog
+              worktracker is your all-in-one platform for efficient worklog
               management and team productivity optimization.
             </p>
             <a href="#/login" className="btn btn-primary btn-lg mt-4">

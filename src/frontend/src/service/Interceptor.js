@@ -39,36 +39,36 @@ privateAxios.interceptors.request.use(
 );
 
 // Response interceptor to handle expired token (401)
-privateAxios.interceptors.response.use(
-  (response) => response, // Pass through successful responses
-  async (error) => {
-    if (error.response && error.response.status === 401) {
-      // Unauthorized error means the token has likely expired
-      try {
-        // Try to refresh the token by making a call to the refresh endpoint
-        const refreshResponse = await publicAxios.post(
-          "token/refresh", // Your refresh token endpoint on the backend
-          null, // You don't need to send anything if the refresh token is in the HttpOnly cookie
-          { withCredentials: true } // Include cookies (for refresh token in HttpOnly cookie)
-        );
+// privateAxios.interceptors.response.use(
+//   (response) => response, // Pass through successful responses
+//   async (error) => {
+//     if (error.response && error.response.status === 401) {
+//       // Unauthorized error means the token has likely expired
+//       try {
+//         // Try to refresh the token by making a call to the refresh endpoint
+//         const refreshResponse = await publicAxios.post(
+//           "token/refresh", // Your refresh token endpoint on the backend
+//           null, // You don't need to send anything if the refresh token is in the HttpOnly cookie
+//           { withCredentials: true } // Include cookies (for refresh token in HttpOnly cookie)
+//         );
 
-        const newAccessToken = refreshResponse.data.jwttoken; // Assuming your backend sends the new access token
-        setJwtToken(newAccessToken); // Store the new access token (use your utility function to store it)
+//         const newAccessToken = refreshResponse.data.jwttoken; // Assuming your backend sends the new access token
+//         setJwtToken(newAccessToken); // Store the new access token (use your utility function to store it)
 
-        // Retry the original request with the new token
-        error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
-        return privateAxios(error.config); // Retry the request with the new token
-      } catch (refreshError) {
-        console.error("Failed to refresh token", refreshError);
-        // If refreshing fails (e.g., refresh token is expired or invalid), redirect to login page
-        sessionStorage.clear();
-        const locati = window.location.origin + "/Logify/#/sessionExpired"; // Fixed path concatenation
-        window.location.href = locati; // Correctly setting the location for redirection
-        return Promise.reject(refreshError);
-      }
-    }
-    return Promise.reject(error); // Reject other errors
-  }
-);
+//         // Retry the original request with the new token
+//         error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
+//         return privateAxios(error.config); // Retry the request with the new token
+//       } catch (refreshError) {
+//         console.error("Failed to refresh token", refreshError);
+//         // If refreshing fails (e.g., refresh token is expired or invalid), redirect to login page
+//         sessionStorage.clear();
+//         const locati = window.location.origin + "/worktracker/#/sessionExpired"; // Fixed path concatenation
+//         window.location.href = locati; // Correctly setting the location for redirection
+//         return Promise.reject(refreshError);
+//       }
+//     }
+//     return Promise.reject(error); // Reject other errors
+//   }
+// );
 
 export default privateAxios;

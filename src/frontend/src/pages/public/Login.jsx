@@ -62,6 +62,7 @@ const Login = () => {
       }),
     password: yup
       .string()
+      .required("password Required")
       .matches(/^[^\s]*$/, "Password cannot contain spaces"), // Regex to check for spacesrequired("Password Required"),
     // .min(6, "Password length must be greater than or equal 6 characters")
     // .max(8, "Password length can't be more than 8 characters"),

@@ -88,7 +88,7 @@ const Navbarr = () => {
               fontWeight: 900,
             }} // Custom font family
           >
-            Logify
+            worktracker
           </Link>
           <button
             className="navbar-toggler"
@@ -103,87 +103,89 @@ const Navbarr = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
-             {isLoggedIn ? (
-              <li className="nav-item dropdown">
-                <Link
-                  className="nav-link dropdown-toggle"
-                  to="#"
-                  id="servicesDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Services
-                </Link>
-                <ul
-                  className="dropdown-menu"
-                  aria-labelledby="servicesDropdown"
-                >
-                  <li>
-                    <Link
-                      className="dropdown-item "
-                      style={{ backgroundColor: "transparent" }}
-                      to="/assignedTasks"
-                    >
-                      Assigned Tasks
-                    </Link>
-                  </li>
-                  {role === "5" && (
-                    <>
-                      <li>
-                        <Link
-                          className="dropdown-item"
-                          style={{ backgroundColor: "transparent" }}
-                          to="/taskByAdmin"
-                        >
-                          Task Assigner
-                        </Link>
-                      </li>
-                    </>
-                  )}
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      style={{ backgroundColor: "transparent" }}
-                      to="/taskByUser"
-                    >
-                      Add Task
-                    </Link>
-                  </li>
-                  {role === "5" && (
-                    <>
-                      <li>
-                        <Link
-                          className="dropdown-item"
-                          style={{ backgroundColor: "transparent" }}
-                          to="/report"
-                        >
-                          full report
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="dropdown-item"
-                          style={{ backgroundColor: "transparent" }}
-                          to="/report2"
-                        >
-                          Short report
-                        </Link>
-                      </li>
-                    </>
-                  )}
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      style={{ backgroundColor: "transparent" }}
-                      to="/editTaskByUser"
-                    >
-                      Edit Tasks
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            ) : ""}
+              {isLoggedIn ? (
+                <li className="nav-item dropdown">
+                  <Link
+                    className="nav-link dropdown-toggle"
+                    to="#"
+                    id="servicesDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Services
+                  </Link>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="servicesDropdown"
+                  >
+                    <li>
+                      <Link
+                        className="dropdown-item "
+                        style={{ backgroundColor: "transparent" }}
+                        to="/assignedTasks"
+                      >
+                        Assigned Tasks
+                      </Link>
+                    </li>
+                    {role === "5" && (
+                      <>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            style={{ backgroundColor: "transparent" }}
+                            to="/taskByAdmin"
+                          >
+                            Task Assigner
+                          </Link>
+                        </li>
+                      </>
+                    )}
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        style={{ backgroundColor: "transparent" }}
+                        to="/taskByUser"
+                      >
+                        Add Task
+                      </Link>
+                    </li>
+                    {role === "5" && (
+                      <>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            style={{ backgroundColor: "transparent" }}
+                            to="/report"
+                          >
+                            full report
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            style={{ backgroundColor: "transparent" }}
+                            to="/report2"
+                          >
+                            Short report
+                          </Link>
+                        </li>
+                      </>
+                    )}
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        style={{ backgroundColor: "transparent" }}
+                        to="/editTaskByUser"
+                      >
+                        Edit Tasks
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+              ) : (
+                ""
+              )}
               {/* <li className="nav-item">
                 <Link className="nav-link" to="/about">
                   About
